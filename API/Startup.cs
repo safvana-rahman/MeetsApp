@@ -6,7 +6,6 @@ using API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-//using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,8 +34,9 @@ namespace API
             });
 
             services.AddControllers();
-            //services.AspNetCore.AddCors();
-            //service.AddCors();
+            
+            services.AddCors();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -55,9 +55,9 @@ namespace API
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseRouting();   
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));         
             
             app.UseAuthorization();
 
